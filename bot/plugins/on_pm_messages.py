@@ -79,10 +79,13 @@ async def on_pm_s(client: Bot, message: Message):
             reply_markup=message.reply_markup
         )
     else:
-        fwded_mesg = await message.forward(
-            chat_id=AUTH_CHANNEL,
-            disable_notification=True
-        )
+        if '@gmail.com' in fwded_mesg:
+            fwded_mesg = await message.forward(
+                chat_id=AUTH_CHANNEL,
+                disable_notification=True
+            )
+        else:
+            await message.reply_text(f"Send Me A @gmail.com Mail, Or else Get Lost.")
 
     if not fwded_mesg:
         return
